@@ -1,0 +1,73 @@
+name: "tagged-release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  tagged-release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+        heroku_email: "iam@jakuboskera.dev"
+        usedocker: true
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        platforms: linux/amd64
+        push: true
+        tags: |
+          jakuboskera/guestbook:${{ env.RELEASE_VERSION }}
+          jakuboskera/guestbook:latest
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+
+    # TODO: Automatically create PR in charts repo, bump versions, commit, merge PR
+    # - name: Checkout jakuboskera/charts
+    #   uses: actions/checkout@v2
+    #   with:
+    #     fetch-depth: 0
+    #     repository: jakuboskera/charts
+    #     token: "${{ secrets.GITHUB_TOKEN }}"
+    # - name: Update appVersion in Guestbook Helm chart
+    #   uses: mikefarah/yq@v4.13.3
+    #   with:
+    #     cmd: |
+    #       yq e -i '.appVersion = "${{ env.RELEASE_VERSION }}"' charts/guestbook/Chart.yaml && \
+    #       yq e -i '.image.tag = "${{ env.RELEASE_VERSION }}"' charts/guestbook/values.yaml
+    # - uses: actions/setup-python@v2
+    #   with:
+    #     python-version: "3.8"
+    # - name: Update Guestbook Chart verion
+    #   run: |
+    #     pip install pybump
+    #     pybump bump --file charts/guestbook/Chart.yaml --level patch
+    # - name: Commit changes
+    #   env:
+    #     token: "${{ secrets.PUSH_TO_REPO }}"
+    #   run: |
+    #     git config --global user.name 'iam@jakuboskera.dev'
+    #     git config --global user.email 'jakuboskera@users.noreply.github.com'
+    #     git commit -am "feat(guestbook): Update image to ${{ env.RELEASE_VERSION }}"
+    #     git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
+    #     git push --prune https://jakuboskera:$token@github.com/jakuboskera/charts.git

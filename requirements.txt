@@ -1,0 +1,10 @@
+prometheus_flask_exporter==0.18.2
+SQLAlchemy==1.4.25
+flask_restx==0.5.1
+alembic==1.7.3
+Flask_SQLAlchemy==2.4.4
+Flask==1.1.2
+Flask_Migrate==2.6.0
+psycopg2_binary==2.8.6
+py-healthcheck==1.10.1
+gunicorn==20.1.0
