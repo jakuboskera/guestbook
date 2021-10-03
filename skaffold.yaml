@@ -1,0 +1,29 @@
+apiVersion: skaffold/v2beta23
+kind: Config
+build:
+  artifacts:
+  - image: docker.io/jakuboskera/guestbook
+deploy:
+  helm:
+    releases:
+    - name: my-guestbook
+      repo: https://jakuboskera.github.io/charts
+      remoteChart: guestbook
+      artifactOverrides:
+        image: docker.io/jakuboskera/guestbook
+      upgradeOnChange: true
+      imageStrategy:
+          helm:
+            explicitRegistry: true
+      # setValueTemplates:
+      #   # Helm values for chart guestbook
+      #   # see https://github.com/jakuboskera/charts/tree/main/charts/guestbook
+      #   # eg:
+      #   global.imageRegistry: your-registry-for-proxy-cache
+      #   service.type: LoadBalancer
+      #   metrics.enabled: true
+      #   # Helm values for subchart postgresql
+      #   # eg:
+      #   postgresql.postgresqlDatabase: guestbook
+      #   postgresql.postgresqlUsername: guestbook
+      #   postgresql.image.tag: 11.13.0-debian-10-r58
