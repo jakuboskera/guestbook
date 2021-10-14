@@ -12,7 +12,7 @@
             {% if entries | length > 0 %}
             {% for entry in entries %}
             <div class="card shadow-sm rounded mb-4" tabindex="0">
-                <div class="card-header">{{ entry.created }} </div>
+                <div class="card-header">{{ entry.created | strftime }} </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>{{ entry.comment }}</p>
