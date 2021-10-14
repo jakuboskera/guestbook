@@ -1,5 +1,6 @@
 import health
 from api import EntryList
+from dateutil import parser
 from flask import jsonify
 from flask import redirect
 from flask import render_template
@@ -70,3 +71,11 @@ def page_not_found(e):
     Requested non-existing page.
     """
     return render_template("pages/404.html"), 404
+
+
+@app.template_filter("strftime")
+def _jinja2_filter_datetime(date, fmt=None):
+    date = parser.parse(date)
+    native = date.replace(tzinfo=None)
+    format = "%b %d, %Y"
+    return native.strftime(format)
