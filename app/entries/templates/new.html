@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %}Add a new entry - {% endblock %} {% block content %}
+<div class="container col-md-4" style="padding-bottom: 200px">
+    <div class="card shadow-sm rounded">
+        <h5 class="card-header">Write a new entry &#129299;</h5>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input autofocus type="text" name="name" class="form-control" id="name" required />
+                </div>
+                <div class="form-group">
+                    <input id="anonymous" name="Anonymous" type="checkbox"> Anonymous</input>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea name="comment" class="form-control" id="comment" rows="3" required></textarea>
+                    <button id="emoji" type="button" class="btn" style="padding-left: 0;">&#128512;</button>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
