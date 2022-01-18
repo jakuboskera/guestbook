@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Entries - {% endblock %} {% block content %}
+<div class="container col-md-6" style="padding-bottom: 200px">
+    {% if entries | length > 0 %} {% for entry in entries %}
+    <div class="card shadow-sm rounded mb-4" tabindex="0">
+        <div class="card-header">{{ entry.created | strftime }} </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p class="multiline">{{ entry.comment }}</p>
+                <footer class="blockquote-footer">
+                    {{ entry.name }}
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    {% endfor %} {% else %}
+    <div class="container col-md-6">
+        <div class="card shadow-sm rounded text-center">
+            <div class="card-body">
+                <h4>No entries found! &#128532;</h4>
+                <h2 class="mt-4"><a href="{{ url_for('entries.new_entry') }}">Add one</a></h2>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

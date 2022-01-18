@@ -1,22 +1,13 @@
-from flask import Blueprint
 from flask import jsonify
 from flask import make_response
-from flask_restx import Api
 from flask_restx import fields
 from flask_restx import Namespace
 from flask_restx import Resource
-from models import db
-from models import EntriesModel
 
+from app import db
+from app.models import Entries
 
-blueprint = Blueprint("api", __name__)
-
-api = Api(
-    blueprint, title="Guestbook", version="1.0", description="Guestbook simple API"
-)
-
-ns = Namespace("entries", description="Entries related operations")
-api.add_namespace(ns)
+api = Namespace("entries", description="Entries related operations")
 
 entry = api.model(
     "Entry",
@@ -31,43 +22,43 @@ entry = api.model(
 )
 
 
-@ns.route("/")
+@api.route("/")
 class EntryList(Resource):
     """
     Shows a list of all entries and lets you POST to add new entries
     """
 
-    @ns.doc("list_entries")
-    @ns.marshal_list_with(entry)
+    @api.doc("list_entries")
+    @api.marshal_list_with(entry)
     def get(self):
         """
         List all entries
         """
-        return EntriesModel.query.order_by(EntriesModel.created.desc()).all()
+        return Entries.query.order_by(Entries.created.desc()).all()
 
-    @ns.doc("create_entry")
-    @ns.expect(entry, validate=True)
+    @api.doc("create_entry")
+    @api.expect(entry, validate=True)
     def post(self, data=None):
         """
         Create a new entry
         """
-        data = ns.payload if data is None else data
-        new_entry = EntriesModel(data["name"], data["comment"])
+        data = api.payload if data is None else data
+        new_entry = Entries(data["name"], data["comment"])
         db.session.add(new_entry)
         db.session.commit()
         return make_response(jsonify(created=True), 201)
 
 
-@ns.route("/<int:id>")
-@ns.param("id", "The entry identifier")
+@api.route("/<int:id>")
+@api.param("id", "The entry identifier")
 class Entry(Resource):
-    @ns.doc("get_entry")
-    @ns.marshal_with(entry)
+    @api.doc("get_entry")
+    @api.marshal_with(entry)
     def get(self, id):
         """
         Fetch a entry given its identifier
         """
-        result = EntriesModel.query.filter_by(id=id).first()
+        result = Entries.query.filter_by(id=id).first()
         if result is not None:
             return result
         api.abort(404, "Entry {} doesn't exist".format(id))
