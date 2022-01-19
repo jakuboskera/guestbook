@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A Python Flask web application that allows visitors to leave a public comment without creating a user account." />
     <title>{% block title %}{% endblock %}Guestbook</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle-bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle-bootstrap-dark.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle-bootstrap-print.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 </head>
 
-<body>
+<body class="bootstrap">
     <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm mb-4">
+        <nav class="navbar navbar-expand-lg border-bottom shadow-sm mb-4 bg-light">
             <a class="navbar-brand h1" href="/">Guestbook</a></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,30 +25,32 @@
                 <div class="navbar-nav">
                     <a href="{{ url_for('main.home') }}" class="nav-item nav-link">Home</a>
                     <a href="{{ url_for('entries.show_entries') }}" class="nav-item nav-link">Entries</a>
-                    <a href="https://github.com/jakuboskera/guestbook" class="nav-item nav-link mr-3">GitHub</a
-              >
-              <a href="{{ url_for('entries.new_entry') }}" class="btn btn-outline-primary" role="button"
-                >Write in the Guestbook</a
-              >
+                    <a href="https://github.com/jakuboskera/guestbook" class="nav-item nav-link mr-3">GitHub</a>
+                    <a href="{{ url_for('entries.new_entry') }}" class="btn btn-outline-primary mr-3" role="button">Write in the Guestbook</a>
+                    <div class="dark-mode pt-1">
+                        <span class="icon-sun"></span>
+                        <label class="switch">
+                            <input type="checkbox" onclick="SwapThemes();" id="toggle-dark-mode">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="icon-moon-o"></span>
+                    </div>
+                </div>
             </div>
-          </div>
         </nav>
     </header>
     <main>
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </main>
     <footer class="fixed-bottom">
-        <nav
-          class="navbar navbar-light bg-light justify-content-center border-top mt-4"
-        >
+        <nav class="navbar justify-content-center border-top mt-4 bg-light">
             <a href="/api/v1" class="nav-item nav-link">API</a>
-                    <a href="/metrics" class="nav-item nav-link">Metrics</a>
-                    <a href="/health" class="nav-item nav-link">Health</a>
+            <a href="/metrics" class="nav-item nav-link">Metrics</a>
+            <a href="/health" class="nav-item nav-link">Health</a>
         </nav>
-        <div class="footer-copyright text-center py-3 navbar-light bg-light">
+        <div class="footer-copyright text-center py-3 bg-light">
             Made with <span style="color:#ec3935;">&#9829;</span> by
-            <a href="https://github.com/jakuboskera" target="_blank" rel="noopener noreferrer">@jakuboskera</a
-            >
+            <a href="https://github.com/jakuboskera" target="_blank" rel="noopener noreferrer">@jakuboskera</a>
         </div>
     </footer>
     <script src="{{ url_for('static', filename='js/jquery-3.5.1.slim.min.js') }}"></script>
