@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'Cousine';
+    src: url('../fonts/SpaceMono-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/SpaceMono-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/SpaceMono-Regular.ttf') format('truetype')/* Safari, Android, iOS */
+}
+
+body.bootstrap,
+body.bootstrap-dark {
+    font-family: 'Cousine', monospace !important;
+    line-height: 1 !important;
+}
+
 .multiline {
     white-space: pre-wrap;
 }
