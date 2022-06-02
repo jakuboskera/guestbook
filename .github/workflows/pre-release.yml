@@ -11,12 +11,12 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
     - uses: actions/checkout@v2
-    - name: Set up QEMU
     - name: Set env vars
       run: |
         echo "CREATED=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
         echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
         echo "VCS_REF=${GITHUB_SHA}" >> $GITHUB_ENV
+    - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
