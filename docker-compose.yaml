@@ -19,6 +19,6 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=entries
+      - POSTGRES_DB=guestbook
 volumes:
   postgres_data:
