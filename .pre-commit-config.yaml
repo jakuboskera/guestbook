@@ -1,24 +1,29 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.0.1
+  rev: v4.2.0
   hooks:
   - id: trailing-whitespace
   - id: end-of-file-fixer
-  - id: check-yaml
   - id: mixed-line-ending
     args: ['--fix=lf']
     description: Forces to replace line ending by the UNIX 'lf' character.
   - id: no-commit-to-branch
     args: ['--branch', 'main']
+  - id: check-yaml
 - repo: https://github.com/psf/black
-  rev: 21.9b0
+  rev: 22.3.0
   hooks:
   - id: black
 - repo: https://github.com/asottile/reorder_python_imports
-  rev: v2.6.0
+  rev: v3.1.0
   hooks:
     - id: reorder-python-imports
-- repo: https://github.com/gruntwork-io/pre-commit
-  rev: v0.1.15
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 2.1.6
   hooks:
-  - id: markdown-link-check
+  - id: markdownlint
+- repo: https://github.com/compilerla/conventional-pre-commit
+  rev: v1.3.0
+  hooks:
+  - id: conventional-pre-commit
+    stages: [commit-msg]
