@@ -6,17 +6,20 @@
     <a href="https://opensource.org/licenses/Apache-2.0"><img alt="jakuboskera" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
 </div>
 
-Guestbook is a simple cloud-native web application which allows visitors to leave a public comment without creating a user account.
+Guestbook is a simple cloud-native web application which allows visitors to
+leave a public comment without creating a user account.
 
-Application uses [MVC architecture](https://www.giacomodebidda.com/posts/mvc-pattern-in-python-introduction-and-basicmodel/), which is widely used software architectural pattern in GUI-based applications.
+Application uses
+[MVC architecture](https://www.giacomodebidda.com/posts/mvc-pattern-in-python-introduction-and-basicmodel/),
+which is widely used software architectural pattern in GUI-based applications.
 
 This application among other things, contains these endpoints:
 - **API** (for interaction without UI) - [python-restx/flask-restx](https://github.com/python-restx/flask-restx),
 - **Prometheus metrics** (for observability) - [rycus86/prometheus_flask_exporter](https://github.com/rycus86/prometheus_flask_exporter),
 - **Health** (health of a application) - [ateliedocodigo/py-healthcheck](https://github.com/ateliedocodigo/py-healthcheck).
 
-
-Live demo of Guestbook application is deployed in [Heroku](http://heroku.com) 🚀, **`public comments Welcome`**!🤗:
+Live demo of Guestbook application is deployed in
+[Heroku](http://heroku.com) 🚀, **`public comments Welcome`**!🤗:
 
 <p align="center">
     <b>https://guestbook.jakuboskera.dev</b>
@@ -41,20 +44,24 @@ Live demo of Guestbook application is deployed in [Heroku](http://heroku.com) �
     - [🚀 Install](#-install-2)
     - [🧹 Cleanup](#-cleanup-2)
 
-
 ## 🏁 Get started
 
 1. Clone this repo
-    ```console
-    $ git clone git@github.com:jakuboskera/guestbook.git
+
+    ```bash
+    git clone git@github.com:jakuboskera/guestbook.git
     ```
+
 1. Navigate to a folder `guestbook`
-    ```console
-    $ cd guestbook
+
+    ```bash
+    cd guestbook
     ```
+
 1. Issue `make` command to see available targets, which you can use
-    ```console
-    $ make
+
+    ```bash
+    make
     ```
 ## 🛠 Used technologies
 
@@ -69,19 +76,19 @@ Live demo of Guestbook application is deployed in [Heroku](http://heroku.com) �
 
 ### 🚀 Install
 
-```console
-$ make docker-run
+```bash
+make docker-run
 ```
 
 ### 🧹 Cleanup
 
-```console
-$ make docker-cleanup
+```bash
+make docker-cleanup
 ```
 
 ## 🎉 Run in Kubernetes
 
-Using Helm chart `guestbook` from Helm repository https://jakuboskera.github.io/charts.
+Using Helm chart `guestbook` from Helm repository <https://jakuboskera.github.io/charts>.
 
 ### Using Helm
 #### ⚠️ Prerequisites
@@ -90,13 +97,13 @@ Using Helm chart `guestbook` from Helm repository https://jakuboskera.github.io/
 
 #### 🚀 Install
 
-```console
-$ make helm-install
+```bash
+make helm-install
 ```
 #### 🧹 Cleanup
 
-```console
-$ make helm-cleanup
+```bash
+make helm-cleanup
 ```
 
 ### Using skaffold and Helm
@@ -112,18 +119,19 @@ Ideal for local Kubernetes development.
 
 Build, tag and deploy artifacts via Helm chart using skaffold.yaml
 
-```console
-$ make skaffold-run
+```bash
+make skaffold-run
 ```
 
-Build, tag and deploy artifacts via Helm chart using skaffold.yaml, make port-forward to containers and write logs of containers to stdout
+Build, tag and deploy artifacts via Helm chart using skaffold.yaml,
+make port-forward to containers and write logs of containers to stdout
 
-```console
-$ make skaffold-dev
+```bash
+make skaffold-dev
 ```
 
 #### 🧹 Cleanup
 
-```console
-$ make skaffold-cleanup
+```bash
+make skaffold-cleanup
 ```
