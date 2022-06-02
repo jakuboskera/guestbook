@@ -66,7 +66,7 @@ Live demo of Guestbook application is deployed in
 ## 🛠 Used technologies
 
 <div align="center">
-    <img src="./used_technologies.png">
+    <img src="docs/used_technologies.png">
 </div>
 
 ## 🎉 Run in docker using docker-compose
