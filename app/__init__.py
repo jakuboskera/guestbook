@@ -1,44 +1,20 @@
-import os
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from prometheus_flask_exporter import PrometheusMetrics
 
+from settings import config_dict
 
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(config=config_dict["dev"]):
     app = Flask(__name__)
-
-    # if deployed to Heroku, env var DATABASE_URL is used
-    conn = os.environ.get("DATABASE_URL")
-    if conn is not None:
-        if conn.startswith("postgres://"):
-            conn = conn.replace("postgres://", "postgresql://", 1)
-    else:
-        conn = (
-            "postgresql://"
-            + os.environ.get("DB_USER", "")
-            + ":"
-            + os.environ.get("DB_PASSWORD", "")
-            + "@"
-            + os.environ.get("DB_HOST", "")
-            + ":"
-            + os.environ.get("DB_PORT", "")
-            + "/"
-            + os.environ.get("DB_NAME", "")
-        )
-
-    app.config.from_mapping(
-        SQLALCHEMY_DATABASE_URI=conn,
-        SWAGGER_UI_DOC_EXPANSION="list",
-        SQLALCHEMY_TRACK_MODIFICATIONS=False,
-    )
+    app.config.from_object(config)
 
     db.init_app(app)
 
-    if os.environ.get("PROMETHEUS_METRICS") != "disable":
+    if app.config.get("PROMETHEUS_METRICS") == "enable":
+        from prometheus_flask_exporter import PrometheusMetrics
+
         PrometheusMetrics(app)
 
     from app.main.views import blueprint as main
