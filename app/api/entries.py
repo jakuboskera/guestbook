@@ -38,6 +38,7 @@ class EntryList(Resource):
 
     @api.doc("create_entry")
     @api.expect(entry, validate=True)
+    @api.response(201, "Created")
     def post(self, data=None):
         """
         Create a new entry
@@ -46,7 +47,7 @@ class EntryList(Resource):
         new_entry = Entries(data["name"], data["comment"])
         db.session.add(new_entry)
         db.session.commit()
-        return make_response(jsonify(created=True), 201)
+        return make_response(jsonify("Created"), 201)
 
 
 @api.route("/<int:id>")
