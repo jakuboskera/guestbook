@@ -63,6 +63,7 @@ Live demo of Guestbook application is deployed in
     ```bash
     make
     ```
+
 ## 🛠 Used technologies
 
 <div align="center">
@@ -88,7 +89,8 @@ make docker-cleanup
 
 ## 🎉 Run in Kubernetes
 
-Using Helm chart `guestbook` from Helm repository <https://jakuboskera.github.io/charts>.
+Using Helm chart `guestbook` from Helm repository
+<https://jakuboskera.github.io/charts>.
 
 ### Using Helm
 #### ⚠️ Prerequisites
