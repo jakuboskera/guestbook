@@ -16,11 +16,12 @@ jobs:
       run: |
         echo "CREATED=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
         echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        echo "VCS_REF=${GITHUB_SHA}" >> $GITHUB_ENV
     - name: Test env vars
       run: |
         echo ${{ env.CREATED }}
         echo ${{ env.VERSION }}
-        echo ${GITHUB_SHA}
+        echo ${{ env.VCS_REF }}
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
     - name: Set up Docker Buildx
@@ -41,5 +42,5 @@ jobs:
         build-args: |
           CREATED=${{ env.CREATED }}
           VERSION=${{ env.VERSION }}
-          VCS_REF=${GITHUB_SHA}
+          VCS_REF=${{ env.VCS_REF }}
 
