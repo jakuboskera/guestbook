@@ -1,4 +1,4 @@
-FROM dev-pks-harbor.cz.moravia-it.com/mirror/library/python:3.9.10-alpine3.15
+FROM python:3.9.10-alpine3.15
 
 ARG CREATED
 ARG VERSION
@@ -17,24 +17,33 @@ LABEL \
     org.opencontainers.image.base.digest="sha256:e80214a705236091ee3821a7e512e80bd3337b50a95392a36b9a40b8fc0ea183" \
     org.opencontainers.image.base.name="docker.io/library/python:3.9.10-alpine3.15"
 
+RUN addgroup -S guestbook && adduser -S guestbook -G guestbook
+
+USER guestbook
+
 WORKDIR /app
 
-# First, copy the requirements.txt only as it helps with caching
 # Details: https://pythonspeed.com/articles/docker-caching-model/
-COPY requirements.txt .
-RUN python3 -m pip install -r requirements.txt
+COPY requirements/ ./requirements
+COPY requirements.txt entrypoint.sh ./
 
-COPY entrypoint.sh .
+USER root
+
+RUN python3 -m pip install -r requirements.txt --no-cache-dir
+
+RUN \
+    apk update && \
+    apk add postgresql-libs && \
+    apk add --virtual .build-deps gcc musl-dev postgresql-dev && \
+    apk --purge del .build-deps
+
+USER guestbook
+
+COPY --chown=guestbook:guestbook . .
+
 RUN chmod +x entrypoint.sh
 
-COPY app ./app
-COPY migrations ./migrations
-COPY main.py .
-
 ENV FLASK_APP=main.py
-
-RUN useradd -m guestbook
-USER guestbook
 
 EXPOSE 5000
 

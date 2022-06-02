@@ -1,22 +1,12 @@
-__pycache__
-*.pyc
-*.pyo
-*.pyd
-.Python
-env
-pip-log.txt
-pip-delete-this-directory.txt
-.tox
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-.git
-.gitignore
-Dockerfile
-.mypy_cache
-.pytest_cache
-.hypothesis
+# ignore all files except listed below
+*
+.*
+
+# we need these files inside a container
+!app/
+!migrations/
+!main.py
+!entrypoint.sh
+!requirements/
+!requirements.txt
+!settings.py
