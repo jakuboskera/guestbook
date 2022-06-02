@@ -34,6 +34,7 @@ class ProductionConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = conn
 
+
 class TestingConfig(Config):
     """Testing configuration"""
 
