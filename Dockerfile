@@ -1,3 +1,5 @@
+FROM dev-pks-harbor.cz.moravia-it.com/mirror/library/python:3.9.10-alpine3.15
+
 ARG CREATED
 ARG VERSION
 ARG VCS_REF
