@@ -29,7 +29,7 @@ skaffold-cleanup: ## Delete app deployed by skaffold
 	skaffold delete
 
 helm-add-jakuboskera-repo: ## Add jakuboskera Helm Charts repository, throw error if exist
-	helm repo add jakuboskera https://jakuboskera.github.com/charts && \
+	helm repo add jakuboskera https://jakuboskera.github.io/charts && \
 
 helm-install: ## Deploy Helm release "my-guestbook" into Kubernetes using Helm chart "jakuboskera/guestbook" from Helm repository https://jakuboskera.github.io/charts
 	helm install my-guestbook jakuboskera/guestbook
