@@ -38,7 +38,7 @@ jobs:
         platforms: linux/amd64
         push: true
         tags: |
-          jakuboskera/guestbook:${{ env.RELEASE_VERSION }}
+          jakuboskera/guestbook:${{ env.VERSION }}
           jakuboskera/guestbook:latest
         build-args: |
           CREATED=${{ env.CREATED }}
