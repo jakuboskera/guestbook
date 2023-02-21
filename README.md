@@ -19,7 +19,7 @@ This application among other things, contains these endpoints:
 - **Health** (health of a application) - [ateliedocodigo/py-healthcheck](https://github.com/ateliedocodigo/py-healthcheck).
 
 Live demo of Guestbook application is deployed in
-[Heroku](http://heroku.com) 🚀, **`public comments Welcome`**!🤗:
+[Fly.io](http://fly.io) 🚀, **`public comments Welcome`**!🤗:
 
 <p align="center">
     <b>https://guestbook.jakuboskera.dev</b>
@@ -31,18 +31,18 @@ Live demo of Guestbook application is deployed in
 - [🏁 Get started](#-get-started)
 - [🛠 Used technologies](#-used-technologies)
 - [🎉 Run in docker using docker-compose](#-run-in-docker-using-docker-compose)
-  - [⚠️ Prerequisites](#️-prerequisites)
-  - [🚀 Install](#-install)
-  - [🧹 Cleanup](#-cleanup)
+    - [⚠️ Prerequisites](#️-prerequisites)
+    - [🚀 Install](#-install)
+    - [🧹 Cleanup](#-cleanup)
 - [🎉 Run in Kubernetes](#-run-in-kubernetes)
-  - [Using Helm](#using-helm)
-    - [⚠️ Prerequisites](#️-prerequisites-1)
-    - [🚀 Install](#-install-1)
-    - [🧹 Cleanup](#-cleanup-1)
-  - [Using skaffold and Helm](#using-skaffold-and-helm)
-    - [⚠️ Prerequisites](#️-prerequisites-2)
-    - [🚀 Install](#-install-2)
-    - [🧹 Cleanup](#-cleanup-2)
+    - [Using Helm](#using-helm)
+        - [⚠️ Prerequisites](#️-prerequisites-1)
+        - [🚀 Install](#-install-1)
+        - [🧹 Cleanup](#-cleanup-1)
+    - [Using skaffold and Helm](#using-skaffold-and-helm)
+        - [⚠️ Prerequisites](#️-prerequisites-2)
+        - [🚀 Install](#-install-2)
+        - [🧹 Cleanup](#-cleanup-2)
 
 ## 🏁 Get started
 
