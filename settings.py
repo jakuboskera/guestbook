@@ -13,7 +13,7 @@ class Config(object):
 class ProductionConfig(Config):
     """Production configuration"""
 
-    # if deployed to Heroku, injected env var DATABASE_URL is used
+    # if deployed to Fly.io, injected env var DATABASE_URL is used
     conn = os.environ.get("DATABASE_URL")
     if conn is None:
         conn = (

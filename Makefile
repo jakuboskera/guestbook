@@ -37,8 +37,4 @@ helm-install: ## Deploy Helm release "my-guestbook" into Kubernetes using Helm c
 helm-cleanup: ## Delete Helm relaese "my-guestbook" from Kubernetes
 	helm uninstall my-guestbook
 
-heroku-run: ## Build Guestbook container image from Dockerfile and deploy it to heroku
-	heroku container:push -a write-comment web && \
-	heroku container:release -a write-comment web
-
 # New targets here
