@@ -9,3 +9,4 @@ py-healthcheck==1.10.1
 prometheus-flask-exporter==0.18.7
 python_dateutil==2.8.2
 SQLAlchemy==1.4.31
+Werkzeug==2.1.2
