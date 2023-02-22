@@ -8,7 +8,8 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SWAGGER_UI_DOC_EXPANSION = "list"
     PROMETHEUS_METRICS = os.environ.get("PROMETHEUS_METRICS", "enable")
-
+    # pool_pre_ping should help handle DB connection drops
+    SQLALCHEMY_ENGINE_OPTIONS = {"pool_pre_ping": True}
 
 class ProductionConfig(Config):
     """Production configuration"""
