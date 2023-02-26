@@ -11,6 +11,7 @@ class Config(object):
     # pool_pre_ping should help handle DB connection drops
     SQLALCHEMY_ENGINE_OPTIONS = {"pool_pre_ping": True}
 
+
 class ProductionConfig(Config):
     """Production configuration"""
 
