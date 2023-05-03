@@ -1,6 +1,6 @@
 <div align="center">
     <h1>📘 Guestbook</h1>
-    <a href="https://github.com/jakuboskera/guestbook/actions"><img alt="jakuboskera" src="https://img.shields.io/github/workflow/status/jakuboskera/guestbook/tagged-release?logo=github"></a>
+    <a href="https://github.com/jakuboskera/guestbook/actions"><img alt="jakuboskera" src="https://img.shields.io/github/actions/workflow/status/jakuboskera/guestbook/release.yml?logo=github"></a>
     <a href="https://github.com/jakuboskera/guestbook/releases"><img alt="jakuboskera" src="https://img.shields.io/github/v/release/jakuboskera/guestbook?logo=docker"></a>
     <a href="https://hub.docker.com/repository/docker/jakuboskera/guestbook"><img alt="jakuboskera" src="https://img.shields.io/docker/pulls/jakuboskera/guestbook?logo=docker"></a>
     <a href="https://opensource.org/licenses/Apache-2.0"><img alt="jakuboskera" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
