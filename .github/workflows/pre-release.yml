@@ -17,7 +17,7 @@ jobs:
         echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
         echo "VCS_REF=${GITHUB_SHA}" >> $GITHUB_ENV
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v1
+      uses: docker/setup-qemu-action@v4
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
     - name: Login to DockerHub
